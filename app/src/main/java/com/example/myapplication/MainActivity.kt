@@ -13,7 +13,10 @@ class MainActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(binding.root)
         viewModel.dataLd.observe(this) {
-            binding.tvText.text = it
+            when (it.status) {
+                Status.Success -> binding.tvText.text = it.data
+                else -> Unit
+            }
         }
         viewModel.getData()
     }
